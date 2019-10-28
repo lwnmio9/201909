@@ -3252,3 +3252,5 @@ def Idcard(id_number):
         print("{}省 {}市 {}".format(area_dict[id_number[0:2] + "0000"].rstrip("省"),
                                  area_dict[id_number[0:4] + "00"].rstrip("市"),
                                  area_dict[id_number[0:6]])) 
+if __name__ == "__main__":
+    print(Idcard("612322200001162025"))
