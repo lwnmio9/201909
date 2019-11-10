@@ -1,13 +1,13 @@
-#身份验证
 import re
 import datetime
 
-ID = input('please enter your idcard:')
+ID = input('please enter your Idcard number:')
 if len(ID) == 18:
     print('Length Ture!')
 else:
     print('Length Error!')
-
+#长度检验
+    
 area_dict = {'110000'	:	'北京市'    ,
              '110101'	:	'东城区'	,
              '110102'	:	'西城区'	,
@@ -3222,35 +3222,46 @@ area_dict = {'110000'	:	'北京市'    ,
              '654326'	:	'吉木乃县'	,
              '659001'	:	'石河子市'
              }
+#地区字典
+
 id_code_list = [7,9,10,5,8,4,1,6,3,7,9,10,5,8,4,2]
 check_code_list = [1,0,'X',9,8,7,6,5,4,3,2]
 if not re.match(r"^\d{17}(\d|X|x$)", ID):
-    print("Format error")
-
-
-ID_add = ID[0:6]
-ID_birth = ID[6:14]
-ID_sex = ID[14:17]
-ID_check = ID[17]
-
+    print("Format error！")
+#格式错误
+else:
+    ID_add = ID[0:6]
+    ID_birth = ID[6:14]
+    ID_sex = ID[14:17]
+    ID_check = ID[17]
+#正则匹配地址生日性别和校验码
+    
 if ID_add not in area_dict:
     print("Area code error")
 year = ID_birth[0:4]
 month = ID_birth[4:6]
 day = ID_birth[6:8]
 print("birthday: "+year+'.'+month+'.'+day+'.')
+#打印生日
 
 if int(ID_sex) % 2 == 0:
     print("sex：female")
 else:
     print("sex：male")
+#打印性别
+    
 def Idcard(id_number):
     if str(check_code_list[sum([a * b for a, b in zip(id_code_list, [int(a) for a in id_number[0:-1]])]) % 11]) != \
             str(id_number.upper()[-1]):
-        print("Check code error")
+            return False,"Check code error"
     else:
-        print("{}省 {}市 {}".format(area_dict[id_number[0:2] + "0000"].rstrip("省"),
+        return True,"{}省 {}市 {}".format(area_dict[id_number[0:2] + "0000"].rstrip("省"),
                                  area_dict[id_number[0:4] + "00"].rstrip("市"),
-                                 area_dict[id_number[0:6]])) 
+                                 area_dict[id_number[0:6]])
+    if Idcard[0:6]==area[i]:
+        print('area:'+area[i])
+    else:
+        return('area false')
 if __name__ == "__main__":
-    print(Idcard(""))
+   print("area:",Idcard)    #在“Idcard”处输入身份证号码进行地址的验证
+#打印地区及校验位验证
